@@ -9,6 +9,7 @@
     <thead>
       <tr>
         <th>股票名称</th>
+        <th>股票市值</th>
         <th>股票价格</th>
       </tr>
     </thead>
@@ -16,6 +17,7 @@
       {% for stock in stocks %}
       <tr>
         <td>{{ stock.name }}</td>
+        <td>{{ stock.market_cap }}</td>
         <td>{{ stock.price }}</td>
       </tr>
       {% endfor %}

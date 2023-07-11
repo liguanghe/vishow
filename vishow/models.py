@@ -7,6 +7,7 @@ class Stock(models.Model):
     code = models.CharField(max_length=10)
     name = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)  # 设置默认值为0.00
+    market_cap = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)  # 添加流通市值字段
 
     # 其他代码...
 
@@ -16,12 +17,13 @@ class Stock(models.Model):
             quotes = ef.stock.get_realtime_quotes()
 
             # 筛选所需字段
-            filtered_quotes = quotes[['股票名称']]
+            filtered_quotes = quotes[['股票名称', '流通市值', '最新价']]  # 添加流通市值字段
 
             # 打印结果
             print(filtered_quotes)
 
             self.name = filtered_quotes.iloc[0]['股票名称']
+            self.market_cap = float(filtered_quotes.iloc[0]['流通市值'])  # 更新流通市值字段
             self.price = float(filtered_quotes.iloc[0]['最新价'])
             self.save()
         except Exception as e:
@@ -29,3 +31,4 @@ class Stock(models.Model):
             print(f"Failed to update stock price: {e}")
 
     # 其他代码...
+

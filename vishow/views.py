@@ -13,3 +13,5 @@ def home(request):
         stock.update_price()
 
     return render(request, 'home.html', {'stocks': stocks})
+
+
