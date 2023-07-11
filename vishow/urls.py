@@ -14,3 +14,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),  # 添加这一行
 ]
+
