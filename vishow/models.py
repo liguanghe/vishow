@@ -29,15 +29,16 @@ class Stock(models.Model):
             filtered_quotes['日期'] = pd.Timestamp.now().date()
             filtered_quotes['时间'] = pd.Timestamp.now().time()
 
-            # 打印结果
-            print(filtered_quotes)
-            self.code = filtered_quotes.iloc[0]['代码']
-            self.name = filtered_quotes.iloc[0]['名称']
-            self.market_cap = float(filtered_quotes.iloc[0]['流通市值'])  # 更新流通市值字段
-            self.price = float(filtered_quotes.iloc[0]['最新价'])
-            self.save()
+
+            if not filtered_quotes.empty:
+                self.code = filtered_quotes.iloc[0]['代码']
+                self.name = filtered_quotes.iloc[0]['名称']
+                self.market_cap = float(filtered_quotes.iloc[0]['流通市值'])
+                self.price = float(filtered_quotes.iloc[0]['最新价'])
+                self.save()
+            else:
+                print("No quotes found for the given code.")
+                self.delete()  # Delete the instance from the database
         except Exception as e:
             # 处理异常情况，例如输出错误信息或进行其他适当的处理
             print(f"Failed to update stock price: {e}")
-
-
