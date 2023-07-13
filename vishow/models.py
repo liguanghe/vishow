@@ -13,7 +13,11 @@ class Stock(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
     market_cap = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)  # 添加流通市值字段
     date = models.DateField(default=datetime.date.today)# 添加日期字段
-    time = models.TimeField(default=timezone.now)  # 添加时间字段
+    time = models.TimeField(default=timezone.now)  # 添加时间字段.
+    buy_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    sell_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+
+
 
     # 其他代码...
 

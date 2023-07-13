@@ -17,16 +17,26 @@
       </tr>
     </thead>
     <tbody>
-      {% for stock in stocks %}
-      <tr>
-        <td>{{ stock.name }}</td>
-        <td>{{ stock.code }}</td>
-        <td>{{ stock.market_cap }}</td>
-        <td>{{ stock.price }}</td>
-        <td>{{ stock.date }}</td>
-        <td>{{ stock.time }}</td>
-      </tr>
-      {% endfor %}
+        {% for stock in stocks %}
+        <tr>
+          <td>{{ stock.name }}</td>
+          <td>{{ stock.code }}</td>
+          <td>{{ stock.market_cap }}</td>
+          <td>{{ stock.price }}</td>
+          <td>{{ stock.date }}</td>
+          <td>{{ stock.time }}</td>
+          <td>
+            <form action="{% url 'update_price' stock.id %}" method="post">
+              {% csrf_token %}
+              <label for="buy_price">Buy Price:</label>
+              <input type="text" id="buy_price" name="buy_price">
+              <label for="sell_price">Sell Price:</label>
+              <input type="text" id="sell_price" name="sell_price">
+              <input type="submit" value="Update Price">
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
     </tbody>
   </table>
   
