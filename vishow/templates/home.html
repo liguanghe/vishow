@@ -21,7 +21,9 @@
         <tr>
           <td>{{ stock.name }}</td>
           <td>{{ stock.code }}</td>
-          <td>{{ stock.market_cap }}</td>
+          <td>{{ stock.market_cap|floatformat:"-4" }} 万亿</td>
+          <td>{{ stock.buy_price|floatformat:"-4" }} 万亿</td>
+          <td>{{ stock.sell_price|floatformat:"-4" }} 万亿</td>
           <td>{{ stock.price }}</td>
           <td>{{ stock.date }}</td>
           <td>{{ stock.time }}</td>
